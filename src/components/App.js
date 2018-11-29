@@ -11,6 +11,7 @@ import store from '../store/store.js';
 
 export default class App extends React.Component {
   constructor(props) {
+    console.log("APP");
     super(props);
 
     this.state = {
@@ -20,14 +21,22 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log(" ")
+    console.log(" *** *** *** *** *** ***")
+    console.log("C! |COMPONENT DID MOUNT|");
+    console.log(" ")
     this.getYouTubeVideos('react tutorials');
   }
 
   handleVideoListEntryTitleClick(video) {
-    this.setState({currentVideo: video});
+    this.setState({ currentVideo: video });
   }
 
   getYouTubeVideos(query) {
+    console.log(" ")
+    console.log(" *** *** *** *** *** ***")
+    console.log("C! |GET YOUTUBE VIDEOS|");
+    console.log(" ")
     var options = {
       key: this.props.API_KEY,
       query: query
@@ -43,16 +52,17 @@ export default class App extends React.Component {
 
   //TODO: swap out the React components below for the container components
   //  you wrote in the 'containers' directory.
+
   render() {
     return (
       <div>
-        <Nav handleSearchInputChange={this.getYouTubeVideos.bind(this)}/>
+        <Nav handleSearchInputChange={this.getYouTubeVideos.bind(this)} />
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.currentVideo}/>
+            <VideoPlayerContainer video={this.state.currentVideo} />
           </div>
           <div className="col-md-5">
-            <VideoList
+            <VideoListContainer
               handleVideoListEntryTitleClick={this.handleVideoListEntryTitleClick.bind(this)}
               videos={this.state.videos}
             />
